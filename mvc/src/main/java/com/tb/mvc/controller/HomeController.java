@@ -7,8 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tb.mvc.model.DropView;
 import com.tb.mvc.model.Project;
+import com.tb.mvc.model.UploadFile;
+import com.tb.mvc.service.impl.IDropViewService;
 import com.tb.mvc.service.impl.IProjectService;
+import com.tb.mvc.service.impl.IUploadFileService;
 
 /**
  * Home page Controller. 
@@ -22,14 +26,23 @@ public class HomeController {
 	
 	@Autowired
     private IProjectService project_service;
-    
+	
+	@Autowired
+	private IDropViewService drop_view_service;
+	
+	@Autowired
+	private IUploadFileService uploadfile_service;
+	
 	@RequestMapping({"/index"})
 	public String index_view(Model model) {
 		//For project name (link) dropdown
 		List<Project> projects = project_service.findAll(); 
 		model.addAttribute("projects", projects);
 		
-		//return "helloWorld";
+		//For drop view dropdown
+		List<DropView> drop_views = drop_view_service.findAll();
+		model.addAttribute("dropviews", drop_views);
+		
 		return "home";
 	}
 	
@@ -49,5 +62,18 @@ public class HomeController {
 		model.addAttribute("projects", projects);
 		return "form_test";
 	}
+
+	@RequestMapping({"/form_project2"})
+	public String dropview_form(Model model) {
+		return "form_test2";
+	}
 	
+	@RequestMapping({"/gallery_view"})
+	public String showGallery(Model model) {
+		//For project name (link) dropdown
+		List<UploadFile> files = uploadfile_service.findAll(); 
+		model.addAttribute("files", files);
+		
+		return "gallery";
+	}
 }

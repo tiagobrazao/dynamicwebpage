@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <!-- @Tiago Brazao 2017 -->
 <!--  -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title> Project View </title>
 		<meta charset="utf-8">
@@ -31,22 +31,12 @@
     		SERVLET SETS PARAM.PROJECT  -->
     <article>
       <div>
-        <p class="heading"> Project View </p> 
-        <p> Nome: ${project.name} </p>
-        <p> Descrição: ${project.description} </p>
+        <p class="heading"> ${project.name} </p> 
+        <p> ${project.description} </p>
         <p> Data de criação: <fmt:formatDate value="${project.entry_date}" pattern="dd/MM/yyyy"/></p>
-        <p> Fechado? <input type="checkbox" 
-        				name="closed" 
-        				value="true" 
-        				${project.closed? 'checked' : '' }
-        				onclick="close_project(${project.id})" /> 
-        </p> 
-        <br />  
-        
-        <form action="remove_project" method="POST">
- 			 <button type="submit" style="color:#000000">Apagar</button><br>
- 		</form>         
-        </div>
+        <p> <img src="image/${project.photo.id}" width="200px" align=middle /> </p>
+        <p align="center"> Projecto ${project.closed? 'encerrado.' : 'em curso.' } </p> 
+     </div>
        
     </article>
    </div>
@@ -60,4 +50,4 @@
 </body>
 </html>
 
-<%@include file="pagebottom.html"%>
+<%@include file="pagebottom.jsp"%>

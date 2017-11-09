@@ -6,5 +6,4 @@ import com.tb.mvc.model.Project;
 public interface IProjectDao extends IDAO<Project, Integer>{
 	
 	//methods
-	
 }

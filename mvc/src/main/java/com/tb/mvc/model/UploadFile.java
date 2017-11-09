@@ -1,15 +1,23 @@
 package com.tb.mvc.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
  
 @Entity
-public class UploadFile {
+public class UploadFile implements IPojo {
 	
-    private int id;
+	private static final long serialVersionUID = 1L;
+
+	private int id;
+    
     private String fileName;
-    private byte[] data;
+    
+
+    
+    private byte[] file_data;
  
     @Id
     @GeneratedValue
@@ -29,12 +37,14 @@ public class UploadFile {
         this.fileName = fileName;
     }
  
+    @Lob
+    @Column(name="file_data", nullable=false, columnDefinition="blob")
     public byte[] getData() {
-        return data;
+        return this.file_data;
     }
  
     public void setData(byte[] data) {
-        this.data = data;
+        this.file_data = data;
     }
     
 	//Equals by unique id
@@ -61,4 +71,5 @@ public class UploadFile {
         result = prime * result + ( (id_integer == null) ? 0 : id_integer.hashCode() );
         return result;
     }
+    
 }

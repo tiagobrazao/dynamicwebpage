@@ -1,6 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <%@ page import="com.tb.mvc.model.Project" %>
+
+
 
 <!DOCTYPE html>
 <!-- @Tiago Brazao 2017 -->
@@ -13,7 +19,7 @@
 					maximum-scale=1.0, user-scalable=no">
 					
 		<!-- LAYOUT -->
-		
+		 
 		<spring:url value="/resources/css/framework.css" var="frameworkCss" />
 		<spring:url value="/resources/css/fontawesome-4.5.0.min.css" var="fontawesomeCss" />
 		<spring:url value="/resources/css/layout.css" var="mainCss" />
@@ -25,7 +31,16 @@
 		<spring:url value="/index/" var="home_url" htmlEscape="true"/>
 		<spring:url value="/about/" var="about_url" htmlEscape="true"/>
 		<spring:url value="/form_project/" var="add_project_url" htmlEscape="true"/>
+		<spring:url value="/form_project2/" var="add_dropview_url" htmlEscape="true"/>
 		<spring:url value="/login/" var="login_url" htmlEscape="true"/>
+		
+		<!-- HTML VIEW EXAMPLES -->
+		<spring:url value="/basic-grid/" var="basic-grid" />
+		<spring:url value="/full-width/" var="full-width" />
+		<spring:url value="/gallery_view/" var="gallery" />
+		<spring:url value="/sidebar-left/" var="sidebar-left" />
+		<spring:url value="/sidebar-right/" var="sidebar-right" />
+		
 
 	</head>
 
@@ -78,19 +93,19 @@
         <li class="active"><a href="${home_url}">Home</a></li>
         
         <!-- DROP DOWN EXAMPLE -->
-        <li><a class="drop" href="#">VIEW MODELS</a>
+        <li><a class="drop" href="#">Options</a>
           <ul>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="full-width.html">Full Width</a></li>
-            <li><a href="sidebar-left.html">Sidebar Left</a></li>
-            <li><a href="sidebar-right.html">Sidebar Right</a></li>
-            <li><a href="basic-grid.html">Basic Grid</a></li>
+            <li><a href="${gallery}">Images</a></li>
+            <!--  <li><a href="${full-width}">Full Width</a></li>
+            <li><a href="${sidebar-left}">Sidebar Left</a></li>
+            <li><a href="${sidebar-right}">Sidebar Right</a></li>
+            <li><a href="${basic-grid}">Basic Grid</a></li>
             <li><a class="drop" href="#">Sub Menu</a>
               <ul>
                 <li><a href="#">Example 1</a></li>
                 <li><a href="#">Example 2</a></li>
               </ul>
-            </li>            
+            </li> -->           
           </ul>
         </li>
        
@@ -98,7 +113,7 @@
         <li><a class="drop" href="#">PROJECTOS </a>
         	<ul id ="drow_projects">
         	
-        	<!-- projects setted in HomeServlet -->		  	
+        	<!-- projects setted in HomeController -->		  	
 		  	<c:forEach items="${projects}" var="project">
       			<li><a href="view_project?id=${project.id}">${project.name}</a></li>
   			</c:forEach>
@@ -106,8 +121,14 @@
           </ul>
        
        <!-- TEST MODULE LINK -->
-       <li><a href="${add_project_url}"> Test </a></li>
-        
+       <li><a href="${add_project_url}"> New Project </a></li>
+       <li><a href="${add_dropview_url}"> New Drop </a></li> 
+       
+       <!-- CREATED VIEWS : drop_views in HomeController-->	  	
+		<c:forEach items="${dropviews}" var="drop_view">
+      		<li>TESTE ${drop_view.name}</li>
+  		</c:forEach>
+       
       </ul>      
     </nav>
   	</header>

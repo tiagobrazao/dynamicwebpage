@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@include file="pagehead.jsp"%>
 
@@ -16,22 +17,31 @@
   		<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
   		<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
   		
-		<!-- <%@taglib tagdir="/WEB-INF/tags" prefix="util_tags" %> -->  
+		<!-- LAYOUT -->
+		<spring:url value="/resources/css/formlayout.css" var="formCss" />
+		<link href="${formCss}" rel="stylesheet" type="text/css" media="all"/>
 		
 	</head>
 	<body> 
 		
-		<!--Form/Create a new Project and save in DB 
-			Form tag from Spring and Multipart to upload project image -->	
-		
-		<form:form 
+		<!--
+			Form/Create a new Project and save in DB 
+			Form tag from Spring and Multipart to upload project image 
+			Layout by formlayout.css
+		-->	
+		<div class="container">  
+			<form:form
+			id="projectform" 
 			action="add_project" 
 			method="POST"
-			enctype="multipart/form-data"> 
+			enctype="multipart/form-data">
 			
-			Nome <input type="text"  style="color:#000000" name="name" /> <br /> 
+			<h3>Novo Projecto</h3>
+    		<h4>Insira os detalhes do seu novo projecto</h4> 
+			
+			Nome <input type="text"  style="color:#000000" name="name" tabindex="1" required autofocus/> <br /> 
 			Descrição <input type="text" style="color:#000000" name="description" /><br /> 			
-			
+			E-Mail <input type="email" style="color:#000000" name="description" /><br /> 
 			Data <input type="text" style="color:#000000" class= "datepicker" name = "entry_date" />
 			<script> 
 				$('.datepicker').datepicker({showAnim: "fadeIn", pattern: "dd/MM/yyyy"}); 
@@ -46,11 +56,16 @@
 				name='fileUpload' /> <br /> 
 				
 			<!-- SAVE BUTTON -->
-			<input type="submit" value="Gravar" style="color:#000000"/>
+			<input type="submit" value="Gravar" id="project-submit"/>
 			<br/>			
 		</form:form> 
 		
+		</div> 
+		
+		
 		<!-- Projects Table View -->
+		<c:if test="${fn:length(projects) gt 0}">
+		<h1> Projectos </h1>
 		<table style="color:#000000">
   			<tr>
     			<th>Id</th>
@@ -65,7 +80,8 @@
   			<c:forEach items="${projects}" var="project">
     		<tr>
       			<td>${project.id}</td>
-      			<td><a href="view_project?id=${project.id}">${project.name}</a></td>
+      			<!-- <td><a href="view_project?id=${project.id}">${project.name}</a></td> -->
+      			<td>${project.name}</td>
       			<td>${project.description}</td>
       			<td><fmt:formatDate value="${project.entry_date}" pattern="dd/MM/yyyy"/></td>
       			
@@ -97,8 +113,8 @@
   				return true;
  			};
 		</script>
-		
+		</c:if>
 	</body>
 </html>
 
-<%@include file="pagebottom.html"%>
+<%@include file="pagebottom.jsp"%>

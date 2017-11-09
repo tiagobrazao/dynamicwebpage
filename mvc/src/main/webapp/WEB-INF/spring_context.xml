@@ -11,13 +11,30 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
  
+    
     <!-- Base Package for DAO, Service, Controller (MVC Pattern) -->
     <context:component-scan base-package="com.tb" /> 
  
     <!-- Database properties -->
     <context:property-placeholder location="classpath:aplication.properties" />
- 
-    <mvc:annotation-driven /> 
+    
+	<mvc:annotation-driven>
+    	
+    	<!-- HTTP MESSAGE CONVERTER
+    	     Basic approach with Message Conversion and Content Negotiation to register 
+    	     an appropriate message converter needed for correct conversion of bytes array to an image file -->
+    	<mvc:message-converters>
+        	<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter">
+            	<property name="supportedMediaTypes">
+                	<list>
+                		<value>image/jpg</value>
+                    	<value>image/jpeg</value>
+                    	<value>image/png</value>
+                	</list>
+            	</property>
+        	</bean>
+    	</mvc:message-converters> 
+	</mvc:annotation-driven>
  
     <!-- Resources view location and View Resolver-->
     <mvc:resources mapping="/resources/**" location="/resources/" />

@@ -24,6 +24,4 @@ public class ProjectService extends AbstractService<Project, Integer>
         this.project_dao.setClazz(Project.class);
     }
     
-    //methods
- 
 }

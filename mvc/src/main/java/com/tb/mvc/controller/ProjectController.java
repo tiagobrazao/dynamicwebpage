@@ -1,6 +1,12 @@
 package com.tb.mvc.controller;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +19,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.tb.mvc.model.Project;
 import com.tb.mvc.model.UploadFile;
 import com.tb.mvc.service.impl.IProjectService;
+import com.tb.mvc.service.impl.IUploadFileService;
 
 /**
  * Controller for Project actions related.
@@ -26,6 +33,9 @@ public class ProjectController {
 	
 	@Autowired
     private IProjectService project_service;
+	
+	@Autowired
+    private IUploadFileService file_service;
 
 	@RequestMapping(value = "form_project/add_project", method = RequestMethod.POST)
 	public String addProject(Project project, 
@@ -42,8 +52,27 @@ public class ProjectController {
 	                uploadFile.setFileName(aFile.getOriginalFilename());
 	                uploadFile.setData(aFile.getBytes());
 	                
-	                System.out.println("Ficheiro: " + aFile.getOriginalFilename());
-	                //fileUploadDao.save(uploadFile);               
+	                //save file- Warning -put file already exists control
+	                file_service.create(uploadFile);
+	                
+	                
+	                int a=uploadFile.getId();
+	                UploadFile newUploadFile = file_service.findOne(uploadFile.getId());
+	                
+	                /*
+	                //Test Persisted image
+	                Toolkit tk = Toolkit.getDefaultToolkit();  
+	                Image icon = tk.createImage(newUploadFile.getData());  
+	                ImageIcon im = new ImageIcon(icon);  
+	                JFrame frame = new JFrame();  
+	                frame.setSize(600, 600);  
+	                JLabel lFoto = new JLabel();  
+	                lFoto.setIcon(im);  
+	                frame.add(lFoto);  
+	                frame.setVisible(true);
+	                */
+	                
+	                project.setPhoto(newUploadFile);
 	            }
 	        }
 	  		

@@ -1,6 +1,6 @@
 package com.tb.mvc.service.impl;
 
-import com.tb.mvc.model.Project;
+import com.tb.mvc.model.DropView;
 import com.tb.mvc.service.IService;
 
 /**
@@ -9,6 +9,6 @@ import com.tb.mvc.service.IService;
  * @author Tiago Brazão
  *
  */
-public interface IProjectService extends IService<Project,Integer> {
+public interface IDropViewService extends IService<DropView,Integer> {
 	
 }

@@ -1,6 +1,6 @@
 package com.tb.mvc.service.impl;
 
-import com.tb.mvc.model.Project;
+import com.tb.mvc.model.UploadFile;
 import com.tb.mvc.service.IService;
 
 /**
@@ -9,6 +9,6 @@ import com.tb.mvc.service.IService;
  * @author Tiago Brazão
  *
  */
-public interface IProjectService extends IService<Project,Integer> {
-	
+public interface IUploadFileService extends IService<UploadFile,Integer>{
+    
 }

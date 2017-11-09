@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -21,22 +23,24 @@ public class Project implements IPojo  {
 	
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
 	private int id;
 	
 	private String name;
 	
 	private String description;
 	
+	private String e_mail;
+	
 	private boolean closed = false;
 	
 	private Date entry_date;
 	
-	//private UploadFile photo;
+	private UploadFile photo;
 	
 	//GAS
 
+	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}
@@ -70,15 +74,15 @@ public class Project implements IPojo  {
 		this.entry_date = entry_date;
 	}
 	
-	/*public UploadFile getPhoto() {
+	@ManyToOne
+	@JoinColumn(name = "file_id")
+	public UploadFile getPhoto() {
 		return photo;
 	}
 	
-	@ManyToOne 
-	@JoinColumn(name = "file_id") 
 	public void setPhoto(UploadFile photo) {
 		this.photo = photo;
-	}*/
+	}
 
 	public boolean isClosed() {
 		return closed;
@@ -112,5 +116,13 @@ public class Project implements IPojo  {
         result = prime * result + ( (id_integer == null) ? 0 : id_integer.hashCode() );
         return result;
     }
+
+	public String getE_mail() {
+		return e_mail;
+	}
+
+	public void setE_mail(String e_mail) {
+		this.e_mail = e_mail;
+	}
 
 }

@@ -53,4 +53,4 @@
 </body>
 </html>
 
-<%@include file="pagebottom.html"%>
+<%@include file="pagebottom.jsp"%>

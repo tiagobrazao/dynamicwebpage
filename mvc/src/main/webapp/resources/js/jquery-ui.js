@@ -5636,7 +5636,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		}
 
 		//Post events to containers
-		this._contactContainers( event );
+		this._projectformContainers( event );
 
 		//Interconnect with droppables
 		if ( $.ui.ddmanager ) {
@@ -6136,7 +6136,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		} );
 	},
 
-	_contactContainers: function( event ) {
+	_projectformContainers: function( event ) {
 		var i, j, dist, itemWithLeastDistance, posProperty, sizeProperty, cur, nearBottom,
 			floating, axis,
 			innermostContainer = null,

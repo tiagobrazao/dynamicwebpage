@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="utf-8"%>
+    
 <!DOCTYPE html>
 <!-- @Tiago Brazao 2017 -->
 <!--  -->
@@ -13,8 +16,7 @@
 
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
-    <p class="fl_left">Tiago Brazão @2017</p>
-    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <p class="fl_right">Tiago Brazão @2017</p>
   </div>
 </div>
 

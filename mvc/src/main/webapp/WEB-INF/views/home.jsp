@@ -9,6 +9,6 @@
 <%@include file="content2.html"%>
 <%@include file="content3.html"%>
 <%@include file="content4.html"%>
-<%@include file="pagebottom.html"%>
+<%@include file="pagebottom.jsp"%>
 
 
