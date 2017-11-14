@@ -103,10 +103,10 @@ File: Layout CSS
 #footer .linklist li::before, #footer .linklist li::after{display:table; content:"";}
 #footer .linklist li, #footer .linklist li::after{clear:both;}
 
-#footer .projectform{}
-#footer .projectform.linklist li, #footer .projectform.linklist li:last-child{position:relative; padding-left:40px;}
-#footer .projectform li *{margin:0; padding:0; line-height:1.6;}
-#footer .projectform li i{display:block; position:absolute; top:0; left:0; width:30px; font-size:16px; text-align:center;}
+#footer .prettyform{}
+#footer .prettyform.linklist li, #footer .prettyform.linklist li:last-child{position:relative; padding-left:40px;}
+#footer .prettyform li *{margin:0; padding:0; line-height:1.6;}
+#footer .prettyform li i{display:block; position:absolute; top:0; left:0; width:30px; font-size:16px; text-align:center;}
 
 
 /* Copyright

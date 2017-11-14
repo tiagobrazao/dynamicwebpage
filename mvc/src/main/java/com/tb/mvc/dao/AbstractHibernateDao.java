@@ -3,6 +3,8 @@ package com.tb.mvc.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,10 @@ public abstract class AbstractHibernateDao<E, K extends Serializable> implements
 		E entity = findOne(entityId);
 		delete(entity);
 	}
+	
+    protected CriteriaBuilder getCriteriaBuilder(){
+    	return getCurrentSession().getCriteriaBuilder();
+    }
 
 
 }

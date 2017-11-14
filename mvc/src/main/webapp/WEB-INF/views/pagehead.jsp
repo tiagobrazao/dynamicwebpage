@@ -1,3 +1,5 @@
+<!-- @Tiago Brazao 2017 -->
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -6,10 +8,8 @@
 
 <%@ page import="com.tb.mvc.model.Project" %>
 
-
-
 <!DOCTYPE html>
-<!-- @Tiago Brazao 2017 -->
+
 
 <html>
 	<head>
@@ -28,19 +28,28 @@
 		<link href="${fontawesomeCss}" rel="stylesheet" type="text/css" media="all"/>
 		<link href="${mainCss}" rel="stylesheet" type="text/css" media="all"/>
 		
+		<!-- URLS -->
+		
 		<spring:url value="/index/" var="home_url" htmlEscape="true"/>
 		<spring:url value="/about/" var="about_url" htmlEscape="true"/>
 		<spring:url value="/form_project/" var="add_project_url" htmlEscape="true"/>
 		<spring:url value="/form_project2/" var="add_dropview_url" htmlEscape="true"/>
+		<spring:url value="/list/" var="admin_url" htmlEscape="true"/>
 		<spring:url value="/login/" var="login_url" htmlEscape="true"/>
+		<spring:url value="/logout/" var="logout_url" htmlEscape="true"/>
+		
+		<!-- GAME -->
+		<spring:url value="/play/" var="play_url" htmlEscape="true"/>
 		
 		<!-- HTML VIEW EXAMPLES -->
-		<spring:url value="/basic-grid/" var="basic-grid" />
-		<spring:url value="/full-width/" var="full-width" />
 		<spring:url value="/gallery_view/" var="gallery" />
-		<spring:url value="/sidebar-left/" var="sidebar-left" />
-		<spring:url value="/sidebar-right/" var="sidebar-right" />
 		
+		<!-- BACK TO TOP -->
+		<spring:url value="/resources/js/jquery.min.js" var="jqueryJS" />
+		<spring:url value="/resources/js/jquery.backtotop.js" var="jqueryBTPJS" />
+		
+		<script src="${jqueryJS}"></script>
+		<script src="${jqueryBTPJS}"></script>
 
 	</head>
 
@@ -59,7 +68,19 @@
       			<ul class="nospace">
         			 <li><a href="${home_url}"><i class="fa fa-lg fa-home"></i></a></li>
         			 <li><a href="${about_url}"> Sobre </a></li>
-        			<li><a href="${login_url}">Login</a></li>
+        			 
+        			 <!-- Security Module Log in or Log out-->
+        			 <c:choose>
+  						<c:when test="${loggedinuser} != null">
+    						<li> Utilizador: <strong>${loggedinuser}</strong> </li> 
+    						<li><a href="${admin_url}"> Admin </a></li>
+    						<li><a href="${logout_url}"> Logout </a></li>
+  						</c:when>
+  					<c:otherwise>
+  							<li><a href="${login_url}"> Login </a></li>
+  					</c:otherwise>
+					</c:choose>
+
       			</ul> 
     		</div>
     
@@ -92,15 +113,15 @@
         <!-- HOME -->
         <li class="active"><a href="${home_url}">Home</a></li>
         
-        <!-- DROP DOWN EXAMPLE -->
+        <!-- OPTIONS / TEST DROP DOWN-->
+        
         <li><a class="drop" href="#">Options</a>
           <ul>
-            <li><a href="${gallery}">Images</a></li>
-            <!--  <li><a href="${full-width}">Full Width</a></li>
-            <li><a href="${sidebar-left}">Sidebar Left</a></li>
-            <li><a href="${sidebar-right}">Sidebar Right</a></li>
-            <li><a href="${basic-grid}">Basic Grid</a></li>
-            <li><a class="drop" href="#">Sub Menu</a>
+            <li><a href="${add_project_url}"> New Project </a></li>
+       		<li><a href="${add_dropview_url}"> New Drop </a></li>
+       		<li><a href="${gallery}">Images</a></li>
+            
+            <!--  
               <ul>
                 <li><a href="#">Example 1</a></li>
                 <li><a href="#">Example 2</a></li>
@@ -120,14 +141,20 @@
 		
           </ul>
        
-       <!-- TEST MODULE LINK -->
-       <li><a href="${add_project_url}"> New Project </a></li>
-       <li><a href="${add_dropview_url}"> New Drop </a></li> 
-       
-       <!-- CREATED VIEWS : drop_views in HomeController-->	  	
+        <!-- PHASER GAME -->
+        <li><a href="${play_url}">Play</a></li>
+        
+        <!-- CREATED VIEWS : drop_views in HomeController-->	  	
 		<c:forEach items="${dropviews}" var="drop_view">
-      		<li>TESTE ${drop_view.name}</li>
+      		<li>${drop_view.name}</li>
+      		<ul id ="drow_labels">
+      		<c:forEach items="${dropview.drop_labels}" var="drop_element">
+      			<li><a href="${drop_element.name}">${drop_element.name}</a></li>
+      		</c:forEach>
+      		</ul>
   		</c:forEach>
+  		
+  		
        
       </ul>      
     </nav>

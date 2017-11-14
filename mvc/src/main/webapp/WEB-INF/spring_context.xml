@@ -65,7 +65,12 @@
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
             </props>
         </property>
-        <property name="packagesToScan" value="com.tb.mvc.model"></property>
+        <property name="packagesToScan">
+         <array>
+              <value>com.tb.mvc.model</value>
+              <value>com.tb.mvc.security.model</value>
+         </array>
+     </property>  
     </bean>
  
     <!-- Transaction -->
@@ -73,6 +78,13 @@
         class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
- 
+    
+    <!-- ResourceBundleMessageSource -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    	<property name="basename">
+        	<value>messages</value>
+    	</property>
+	</bean>
+   	
     <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

@@ -9,16 +9,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, 
 					maximum-scale=1.0, user-scalable=no">
-				
-		<spring:url value="/resources/js/jquery.min.js" var="jqueryJS" />
-		<spring:url value="/resources/js/jquery.backtotop.js" var="jqueryBTPJS" />
-		<spring:url value="/resources/js/jquery.mobilemenu.js" var="jquerymobileJS" />
 		
-		<script src="${jqueryJS}"></script>
-		<script src="${jquerymobileJS}"></script>
-		<script src="${jqueryJS}"></script>
-		
+		<!-- Resources URL's -->		
 		<spring:url value="/resources/images/moon-and-misty-night.png" var="bkg_image" />
+		<spring:url value="/resources/doc/CV-TiagoBrazão.pdf" var="c_doc" />
 	</head>
 
 	<body id="top_main">
@@ -43,8 +37,8 @@
       
       <footer>
         <ul class="nospace inline pushright">
-          <li><a class="btn inverse" href="docs/CV-TiagoBrazÃ£o.pdf">Currículo</a></li>
-          <li><a class="btn" href="#">Projectos</a></li>
+          <li><a class="btn inverse" href="${c_doc}">Currículo</a></li>
+          <li><a class="btn inverse" href="#">Projectos</a></li>
         </ul>
       </footer>
     </article>

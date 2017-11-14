@@ -1,8 +1,12 @@
 package com.tb.mvc.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -20,6 +24,8 @@ public class DropView implements IPojo  {
 	private int id;
 	
 	private String name;
+	
+	private List<DropLabel> drop_labels;
 	
 	//Equals by unique id
     @Override
@@ -56,6 +62,7 @@ public class DropView implements IPojo  {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "drop_ID")
 	public int getId() {
 		return id;
 	}
@@ -64,4 +71,13 @@ public class DropView implements IPojo  {
 		this.id = id;
 	}
 
+	@OneToMany(mappedBy = "dropview")
+	public List<DropLabel> getDrop_labels() {
+		return drop_labels;
+	}
+
+	public void setDrop_labels(List<DropLabel> drop_labels) {
+		this.drop_labels = drop_labels;
+	}
+	
 }

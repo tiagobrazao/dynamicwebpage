@@ -8,7 +8,7 @@
 <%@include file="pagehead.jsp"%>
 
 <!DOCTYPE html> 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>TEST</title>
@@ -21,6 +21,11 @@
 		<spring:url value="/resources/css/formlayout.css" var="formCss" />
 		<link href="${formCss}" rel="stylesheet" type="text/css" media="all"/>
 		
+		<style type="text/css">
+.error {
+	color: red;
+}
+</style>
 	</head>
 	<body> 
 		
@@ -30,19 +35,36 @@
 			Layout by formlayout.css
 		-->	
 		<div class="container">  
+
 			<form:form
-			id="projectform" 
+			id="prettyform" 
 			action="add_project" 
 			method="POST"
+			modelAttribute="project"
 			enctype="multipart/form-data">
 			
 			<h3>Novo Projecto</h3>
     		<h4>Insira os detalhes do seu novo projecto</h4> 
 			
-			Nome <input type="text"  style="color:#000000" name="name" tabindex="1" required autofocus/> <br /> 
-			Descrição <input type="text" style="color:#000000" name="description" /><br /> 			
-			E-Mail <input type="email" style="color:#000000" name="description" /><br /> 
-			Data <input type="text" style="color:#000000" class= "datepicker" name = "entry_date" />
+			<tr>
+				<td> Nome:
+            	<input type="text"  style="color:#000000" name="name" tabindex="1" required autofocus/> </td>
+                <td align="right"><form:errors path="name"/></td> 
+            </tr>
+			
+			<tr>
+				<th> Descrição: </th> 
+				<td> <input type="text" style="color:#000000" name="description" /> 
+				<form:errors path="description" cssClass="error" />	</td> 		
+			</tr>
+			
+			<tr>
+				<th> E-Mail: </th> 
+			
+			 <td><input type="email" style="color:#000000" name="description" /> </tr>
+			
+			Data: <input type="text" style="color:#000000" class= "datepicker" name = "entry_date" />
+			
 			<script> 
 				$('.datepicker').datepicker({showAnim: "fadeIn", pattern: "dd/MM/yyyy"}); 
 			</script>

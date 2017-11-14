@@ -8,11 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.AssertFalse;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
  * POJO, Persisted object;
  * Template for dynamic construction in view.
+ * Whit bean validation
  * 
  *  @author Tiago Brazão
  *
@@ -25,14 +32,19 @@ public class Project implements IPojo  {
 
 	private int id;
 	
+	@NotEmpty(message = "Insira nome de projecto.")
+    @Size(min = 2, max = 15, message = "Nome de projecto: entre 2 and 15 caracteres.")
 	private String name;
 	
+	@NotEmpty(message = "Insira descrição.")
 	private String description;
 	
-	private String e_mail;
+	@AssertFalse
+	private boolean closed;
 	
-	private boolean closed = false;
-	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+    @NotNull (message = "Insira data válida.")
+	//@Past (see all annotations possibilities)
 	private Date entry_date;
 	
 	private UploadFile photo;
@@ -117,12 +129,12 @@ public class Project implements IPojo  {
         return result;
     }
 
-	public String getE_mail() {
+	/*public String getE_mail() {
 		return e_mail;
 	}
 
 	public void setE_mail(String e_mail) {
 		this.e_mail = e_mail;
-	}
+	}*/
 
 }

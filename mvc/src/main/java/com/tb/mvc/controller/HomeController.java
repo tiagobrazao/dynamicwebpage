@@ -55,17 +55,10 @@ public class HomeController {
 	public String about_view() {
 		return "about";
 	}
-	
-	@RequestMapping({"/form_project"})
-	public String project_form(Model model) {
-		List<Project> projects = project_service.findAll(); 
-		model.addAttribute("projects", projects);
-		return "form_test";
-	}
 
 	@RequestMapping({"/form_project2"})
 	public String dropview_form(Model model) {
-		return "form_test2";
+		return "dropviewform";
 	}
 	
 	@RequestMapping({"/gallery_view"})
@@ -75,5 +68,10 @@ public class HomeController {
 		model.addAttribute("files", files);
 		
 		return "gallery";
+	}
+	
+	@RequestMapping({"/play"})
+	public String playgame() {
+		return "game_puzzle";
 	}
 }

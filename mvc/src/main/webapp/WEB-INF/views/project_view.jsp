@@ -41,12 +41,6 @@
     </article>
    </div>
    </div> 
-
-<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
-<!-- JAVASCRIPTS -->
-<script src="/resources/css/jquery.min.js"></script>
-<script src="/resources/js/jquery.backtotop.js"></script>
-<script src="/resources/js/jquery.mobilemenu.js"></script>
 </body>
 </html>
 
