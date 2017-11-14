@@ -1,4 +1,5 @@
 <!-- ABOUT PAGE / CHANGES MAIN CONTENT -->
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@include file="pagehead.jsp"%>
 
 <!DOCTYPE html>
@@ -8,6 +9,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, 
 					maximum-scale=1.0, user-scalable=no">
+					
+		<spring:url value="/resources/doc/CV-TiagoBrazão.pdf" var="c_doc" />
 	</head>
 
 	<body id="top_about">
@@ -37,12 +40,11 @@
       
       <footer>
         <ul class="nospace inline pushright">
-          <li><a class="btn inverse" href="doc/CV-TiagoBrazão.pdf">Currículo</a></li>
-          <li><a class="btn" href="#">Projectos</a></li>
+          <li><a class="btn inverse" href="${c_doc}" target="_blank"> Currículo  </a></li>  
         </ul>
       </footer>
     </article>
-   </div>
+   </div> 
    </div> 
 </body>
 </html>

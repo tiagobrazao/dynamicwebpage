@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -43,7 +42,6 @@ public class Project implements IPojo  {
 	private boolean closed;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
-    @NotNull (message = "Insira data válida.")
 	//@Past (see all annotations possibilities)
 	private Date entry_date;
 	

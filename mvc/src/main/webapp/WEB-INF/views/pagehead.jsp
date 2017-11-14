@@ -71,7 +71,7 @@
         			 
         			 <!-- Security Module Log in or Log out-->
         			 <c:choose>
-  						<c:when test="${loggedinuser} != null">
+  						<c:when test="${loggedinuser!= null}">
     						<li> Utilizador: <strong>${loggedinuser}</strong> </li> 
     						<li><a href="${admin_url}"> Admin </a></li>
     						<li><a href="${logout_url}"> Logout </a></li>

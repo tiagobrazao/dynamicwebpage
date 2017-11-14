@@ -187,7 +187,7 @@ public class LoginController {
         if (isCurrentAuthenticationAnonymous()) {
             return "login";
         } else {
-            return "redirect:/home";  
+            return "home";  
         }
     }
  
@@ -209,15 +209,19 @@ public class LoginController {
     /**
      * This method returns the principal[user-name] of logged-in user.
      */
-   private String getPrincipal(){
+   public static String getPrincipal(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
  
-        if (principal instanceof UserDetails) {
+        /*if (principal instanceof UserDetails) {
             userName = ((UserDetails)principal).getUsername();
         } else {
             userName = principal.toString();
-        }
+        }*/
+        
+        if (principal instanceof UserDetails)
+        	userName = ((UserDetails)principal).getUsername();
+        
         return userName;
     }
      

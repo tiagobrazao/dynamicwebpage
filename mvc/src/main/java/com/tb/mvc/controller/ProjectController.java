@@ -12,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -55,24 +55,9 @@ public class ProjectController {
 	@GetMapping("/form_project")
     public String showForm(Project project) {
         return "form_test";
-    }
+    } 
 	
-	//deprecaded show all projects in add project
-	/*@RequestMapping({"/form_project"})
-	public String project_form(Model model) {
-		List<Project> projects = project_service.findAll(); 
-		model.addAttribute("projects", projects);
-		return "form_test";
-	}*/
-	
-	//@RequestMapping(value = "form_project/add_project", method = RequestMethod.POST)
-	//public String addProject(@Valid @ModelAttribute("project")Project project, BindingResult result,
-		//	@RequestParam CommonsMultipartFile[] fileUpload) {
-	
-	//public String addProject(Project project, @RequestParam CommonsMultipartFile[] fileUpload) {
-			
-	//		if (result.hasErrors()) return "form_test";
-	@PostMapping(value = "form_project/add_project")
+	@RequestMapping(value = "/form_project/add_project", method = RequestMethod.POST)
     public String addProject(@ModelAttribute("project") @Valid Project project, BindingResult result,
     		@RequestParam CommonsMultipartFile[] fileUpload) {
  
@@ -114,7 +99,7 @@ public class ProjectController {
 	        //Save project
 	        project_service.create(project);
 	        
-	        return "redirect:project_view";
+	        return "redirect:view_project";
 	}
 	
 	@RequestMapping({"/view_project", "form_project/view_project"})

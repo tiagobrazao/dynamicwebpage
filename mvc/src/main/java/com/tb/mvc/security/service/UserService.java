@@ -1,6 +1,7 @@
 package com.tb.mvc.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +15,19 @@ import com.tb.mvc.service.AbstractService;
 @Transactional
 public class UserService extends AbstractService<User,Integer> implements IUserService {
  
-    @Autowired 
     private IUserDao dao;
  
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    public UserService() {}
+    
+    @Autowired
+    public UserService(@Qualifier("userDao") IUserDao user_dao) {
+        super(user_dao);
+        this.dao = (IUserDao) user_dao;
+        this.dao.setClazz(User.class);
+    }
      
     public User findBySSO(String sso) {
         return dao.findBySSO(sso);

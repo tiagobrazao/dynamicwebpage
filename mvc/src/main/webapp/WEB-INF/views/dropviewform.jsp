@@ -63,6 +63,7 @@
                     	<br>
 
                     	<!-- SAVE BUTTON -->
+                    	<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
 						<button type="submit" name="submit"> Save </button> 
                 </form:form>
             </div>	

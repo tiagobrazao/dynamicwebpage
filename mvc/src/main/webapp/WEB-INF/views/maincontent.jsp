@@ -36,9 +36,8 @@
       </div>
       
       <footer>
-        <ul class="nospace inline pushright">
-          <li><a class="btn inverse" href="${c_doc}">Currículo</a></li>
-          <li><a class="btn inverse" href="#">Projectos</a></li>
+        <ul class="nospace inline pushright"> 
+          <li><a class="btn inverse" href="${c_doc}" target="_blank">Currículo</a></li>
         </ul>
       </footer>
     </article>

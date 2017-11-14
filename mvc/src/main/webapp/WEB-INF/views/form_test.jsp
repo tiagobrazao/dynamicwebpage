@@ -35,13 +35,14 @@
 			Layout by formlayout.css
 		-->	
 		<div class="container">  
-
+						
 			<form:form
-			id="prettyform" 
-			action="add_project" 
-			method="POST"
-			modelAttribute="project"
-			enctype="multipart/form-data">
+				id="prettyform" 
+				action="add_project?${_csrf.parameterName}=${_csrf.token}"
+				method="POST" 
+				modelAttribute="project"
+				enctype="multipart/form-data">
+			
 			
 			<h3>Novo Projecto</h3>
     		<h4>Insira os detalhes do seu novo projecto</h4> 
@@ -77,9 +78,9 @@
 				style="color:#FFFFFF" 
 				name='fileUpload' /> <br /> 
 				
-			<!-- SAVE BUTTON -->
+			<!-- SAVE BUTTON -->			
+			<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
 			<input type="submit" value="Gravar" id="project-submit"/>
-			<br/>			
 		</form:form> 
 		
 		</div> 

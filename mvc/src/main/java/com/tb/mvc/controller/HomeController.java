@@ -33,7 +33,7 @@ public class HomeController {
 	@Autowired
 	private IUploadFileService uploadfile_service;
 	
-	@RequestMapping({"/index"})
+	@RequestMapping({"/", "/index"})
 	public String index_view(Model model) {
 		//For project name (link) dropdown
 		List<Project> projects = project_service.findAll(); 
@@ -42,6 +42,9 @@ public class HomeController {
 		//For drop view dropdown
 		List<DropView> drop_views = drop_view_service.findAll();
 		model.addAttribute("dropviews", drop_views);
+		
+		//Logged user
+		model.addAttribute("loggedinuser", LoginController.getPrincipal());
 		
 		return "home";
 	}
